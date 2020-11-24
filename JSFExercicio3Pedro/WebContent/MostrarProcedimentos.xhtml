@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Mostrar Procedimentos</title>		
+</h:head>
+<h:body>
+	<h:form>
+		<h:commandLink value="Cadastro de Procedimentos" action="CadastroProcedimento.xhtml" immediate="true" />
+		<h1>Procedimentos</h1>
+		<h:dataTable value="#{procedimentoControllerPedro.lista}" var="procedimento" border="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="DESCRIÇÃO"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.procedimento}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="PACIENTE"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.paciente}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="VALOR"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.valor}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="QUANTIDADE"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.quantidade}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="VALOR TOTAL"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.valorTotal}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="DATA INÍCIO"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.dataInicio}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="DATA FIM"/>
+				</f:facet>
+				
+				<h:outputText value="#{procedimento.dataFim}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ação" />
+				</f:facet>
+				
+				<h:commandButton value="Editar" action="#{procedimentoControllerPedro.editar}">
+					<f:setPropertyActionListener 
+						value="#{procedimento}" 
+						target="#{procedimentoControllerPedro.procedimento}" />
+				</h:commandButton>
+				
+				<h:commandButton value="Excluir" action="#{procedimentoControllerPedro.excluir}" onclick="return confirm('Confirma a exclusão ?')">
+					<f:setPropertyActionListener 
+						value="#{procedimento}" 
+						target="#{procedimentoControllerPedro.procedimento}" />
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
